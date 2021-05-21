@@ -2,7 +2,7 @@ name: TestFlow
 
 on:
   pull_request:
-    branches: [ invalidBranch ]
+    branches: [ '*' ]
 
   workflow_dispatch:
     inputs:
