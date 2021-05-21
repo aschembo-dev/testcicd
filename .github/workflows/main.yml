@@ -2,9 +2,9 @@ name: Java CI with Maven
 
 on:
   #push:
-    #branches: [ ]
+    #branches: [ '*' ]
   pull_request:
-    branches: [ invalidBranch ]
+    branches: [ '*']
   # schedule: 
      # * is a special character in YAML so you have to quote this string
     #  - cron:  '*/15 * * * *'   # Runs every 15 mins
