@@ -1,7 +1,7 @@
 name: CanaryTest
 
 on:
-  push:
+  pull_request:
     branches: [ main ]
 
   workflow_dispatch:
@@ -71,10 +71,10 @@ jobs:
         uses: ./.github/vijejain/cicd-actions-bugbash
         if: ${{ always() }}
         with:
-          name: 'test12345'
+          name: cicd-canary-beta-us-west-2-1623040670639
           source_path: .
           build_path: target
-          s3_bucket: codeguru-reviewer-test-cicd-bucket
+          s3_bucket: codeguru-reviewer-github-canary-beta-us-west-2
 
       - name: Upload review result
         if: ${{ always() }}
@@ -86,6 +86,7 @@ jobs:
       #  uses: ./.github/actions/action.yml
       #  if: ${{ always() }}
       #  with:
+      #    name: cicd-canary-beta-us-west-2-1623040670639
       #    source_path: .
       #    build_path: target
-      #    s3_bucket: BUCKET_NAME_PLACEHOLDER
+      #    s3_bucket: codeguru-reviewer-github-canary-beta-us-west-2
