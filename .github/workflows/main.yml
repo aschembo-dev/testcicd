@@ -1,7 +1,7 @@
 name: CanaryTest
-##
+
 on:
-  push:
+  pull_request:
     branches: [ main ]
 
   workflow_dispatch:
@@ -32,23 +32,23 @@ jobs:
       - name: Build with Maven
         run: mvn -B package --file pom.xml
 
-      # name: Configure AWS Credentials ECR
-      #  uses: aws-actions/configure-aws-credentials@v1
-      #  if: ${{ always() }}
-      #  with:
-      #    aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #    aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      #    aws-region: us-west-2
+      - name: Configure AWS Credentials ECR
+        uses: aws-actions/configure-aws-credentials@v1
+        if: ${{ always() }}
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-west-2
 
-      # name: ECR Login
-      #  uses: aws-actions/amazon-ecr-login@v1
-      #  with:
-      #    registries: ${{ secrets.REGISTRY_ACCOUNT_ID }}
+      - name: ECR Login
+        uses: aws-actions/amazon-ecr-login@v1
+        with:
+          registries: ${{ secrets.REGISTRY_ACCOUNT_ID }}
 
-      # name: Docker Pull
-      #  run: |
-      #    docker pull ${{ secrets.ECR_URI }}
-      #    docker image tag ${{ secrets.ECR_URI }} codeguru:latest
+      - name: Docker Pull
+        run: |
+          docker pull ${{ secrets.ECR_URI }}
+          docker image tag ${{ secrets.ECR_URI }} codeguru:latest
 
       - name: Configure AWS Credentials CodeGuru
         uses: aws-actions/configure-aws-credentials@v1
@@ -71,21 +71,14 @@ jobs:
         uses: ./.github/vijejain/cicd-actions-bugbash
         if: ${{ always() }}
         with:
-          name: 'test1234'
           source_path: .
           build_path: target
           s3_bucket: codeguru-reviewer-test-cicd-bucket
 
-      - name: Upload review result
-        if: ${{ always() }}
-        uses: github/codeql-action/upload-sarif@v1
-        with:
-          sarif_file: codeguru-results.sarif.json
-
       # name: AWS CodeGuru Reviewer Scanner
-      #  uses: ./.github/actions/action.yml
+      #  uses: ./.github/vijejain/cicd-actions-bugbash
       #  if: ${{ always() }}
       #  with:
       #    source_path: .
       #    build_path: target
-      #    s3_bucket: BUCKET_NAME_PLACEHOLDER
+      #    s3_bucket: bucket
