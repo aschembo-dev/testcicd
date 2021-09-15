@@ -9,6 +9,10 @@ on:
         default: 'debug'
       tags:
         description: 'Test scenario tags'
+        
+  push:
+  
+  pull_request:
 
 jobs:
   build:
