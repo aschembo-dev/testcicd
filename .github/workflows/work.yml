@@ -11,7 +11,7 @@ on:
         description: 'Test scenario tags'
         
   push:
-    branches: [committesting]
+    branches: [test_branch]
   
   pull_request:
     branches: [main]
