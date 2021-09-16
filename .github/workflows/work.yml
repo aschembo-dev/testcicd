@@ -12,7 +12,7 @@ on:
         
   push:
     branches:
-      -committest
+      - committest
   
   pull_request:
     branches:
