@@ -11,12 +11,10 @@ on:
         description: 'Test scenario tags'
         
   push:
-    branches:
-      - committest
+    branches: [committesting]
   
   pull_request:
-    branches:
-      -invalidCommitTesting1
+    branches: [main]
 
 jobs:
   build:
