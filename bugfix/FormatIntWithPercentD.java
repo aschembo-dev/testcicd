@@ -9,6 +9,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+// Apple
 public class FormatIntWithPercentD {
     private static final Logger LOG = LoggerFactory.getLogger(VMWApplianceConfigurationHelper.class);
 
