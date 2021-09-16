@@ -16,6 +16,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 public class SSMLogAnalyser {
+    
+    // test
 
     private static final Logger LOGGER = LogManager.getLogger(SSMLogAnalyser.class);
 
