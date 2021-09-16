@@ -49,6 +49,7 @@ public class CFNHelperSingleton {
     }
 
     public List<StackSummary> listStacks(String region) {
+        // Adding a random comment
         AmazonCloudFormation client = getCfnClient(region);
         ListStacksResult result = client.listStacks();
         return result.getStackSummaries();
