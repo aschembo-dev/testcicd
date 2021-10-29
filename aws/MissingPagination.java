@@ -34,6 +34,7 @@ public class CFNHelperSingleton {
     }
 
     public Map<String, Object> getExistingStackParameters(String stackName, String region) throws IOException {
+        // adding a comment here
         AmazonCloudFormation client = getCfnClient(region);
         try {
             GetTemplateResult result = client.getTemplate(new GetTemplateRequest().withStackName(stackName));
